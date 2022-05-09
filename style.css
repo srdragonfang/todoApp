@@ -48,6 +48,8 @@ h1 {
   height: 400px;
   overflow-y: scroll;
   height: 300px;
+  display: flex;
+  flex-direction: column;
 }
 .todoList::-webkit-scrollbar {
   display: none;
@@ -64,6 +66,14 @@ h1 {
   border: 0.1px solid lightgray;
   border-radius: 5px;
 }
+.todo:not(.completed) {
+  order: 2;
+  animation: undone 0.5s;
+}
+.todo.completed {
+  order: 3;
+  animation: done 0.5s;
+}
 .todo + .todo {
   margin-top: 0.1rem;
 }
@@ -71,7 +81,6 @@ h1 {
   width: 100%;
 }
 .completed {
-  /* background: brown; */
   text-decoration: line-through;
   opacity: 30%;
 }
@@ -86,4 +95,33 @@ h1 {
   font-size: 16px;
   letter-spacing: 0.075rem;
   margin-top: 1rem;
+}
+.done {
+  order: 3;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+@keyframes done {
+  0% {
+    opacity: 0;
+    background-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(20px);
+  }
+  50% {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+}
+
+@keyframes undone {
+  0% {
+    opacity: 0;
+    background-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-20px);
+  }
+  50% {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.4);
+  }
 }
